@@ -33,12 +33,12 @@ def isResistance(df,i):
   return resistance
 
 
-def snr(inst,tf='1d'):
+def plot_support_n_resistance(pair,tf):
   '''plots structure levels on several pairs
   '''
   #locating the levels
   levels = []
-  ticker = yfinance.Ticker(inst)
+  ticker = yfinance.Ticker(pair)
   df = ticker.history(interval=tf, period='4mo')
 
   df['Date'] = pd.to_datetime(df.index)
@@ -67,17 +67,13 @@ def snr(inst,tf='1d'):
   for level in levels:
     plt.hlines(level[1],xmin=df['Date'][level[0]],\
                xmax=max(df['Date']),colors='blue')
-  plt.title(f"{inst}") 
-  #fig.savefig(f'{inst}.png')
-  #fig.show()
-  return fig.show()
-
-
-def structures(inst=inst,tf='1d'):
-  print(f'Calculating Structure levels on {tf}...')
-  for i in range(0, len(inst)):
-    snr(inst[i], tf)
-  return f'Check again next {tf} period'
-
+  # plt.title(f"{pair}")
+  # import os create the directory
+  # check if the pair does not exist then create otherwise we may overwrite
+  # if possible delete each image when a newone is created to save space
+  # remember sessions
+  path = f"static/images/{pair.split('=')[0]}.png"
+  fig.savefig(path)
+  return path
 
     
