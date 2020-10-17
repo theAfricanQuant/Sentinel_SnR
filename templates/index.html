@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css')}}">
+    <title>Sentinel Support n Resistance V1.1.0</title>
+</head>
+
+<body>
+    <div class="container ">
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"><img src="" class="img-fluid rounded-circle" alt=""> <span>Sentinel Support n Resistance</span></a>
+        </nav>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="text-muted text-center">Chart Area </h3>
+                    </div>
+                    <div class="col-6">
+                        <form class="form-inline" action="/" method="post" name="form">
+                            <label for="option_pairs"><span> Pairs </span> </label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <select class="form-control" id="option_pairs" name="pair">
+                                    <option value="EURUSD=X">EUR / USD</option>
+                                    <option value="BTCUSD=X">BTC / USD</option>
+                                    <option value="NZDUSD=X">NZD / USD</option>
+                                    <option value="^DJI'">EUR / USD</option>
+                                </select>
+                            </div>
+                            <label for="option_timeframes">Timeframes</label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <select class="form-control" id="option_timeframes" name="tf">
+                                    <option value="1d">Daily</option>
+                                    <option value="1d">Weekly</option>
+                                    <option value="1d">Monthly</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-sm mb-2">Plot Chart</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="chart">
+                  {% if path %}
+                  <img src="{{path}}" class="img-fluid ">
+                  {% endif %}
+                </div>
+            </div>
