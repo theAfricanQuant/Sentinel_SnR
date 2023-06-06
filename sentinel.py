@@ -25,12 +25,15 @@ inst = ['BTCUSD=X', 'EURUSD=X', 'JPY=X', 'GBPUSD=X',
         '^VIX', '^FTSE', 'GC=F']
 
 def isSupport(df,i):
-  support = df['Low'][i] <= df['Low'][i-1]  and df['Low'][i] <= df['Low'][i+1] and df['Low'][i] <= df['Low'][i+2] and df['Low'][i] <= df['Low'][i-2]
-  return support
+  return (df['Low'][i] <= df['Low'][i - 1] and df['Low'][i] <= df['Low'][i + 1]
+          and df['Low'][i] <= df['Low'][i + 2]
+          and df['Low'][i] <= df['Low'][i - 2])
   
 def isResistance(df,i):
-  resistance = df['High'][i] >= df['High'][i-1]  and df['High'][i] >= df['High'][i+1] and df['High'][i] >= df['High'][i+2] and df['High'][i] >= df['High'][i-2]
-  return resistance
+  return (df['High'][i] >= df['High'][i - 1]
+          and df['High'][i] >= df['High'][i + 1]
+          and df['High'][i] >= df['High'][i + 2]
+          and df['High'][i] >= df['High'][i - 2])
 
 
 def plot_support_n_resistance(pair,tf):
